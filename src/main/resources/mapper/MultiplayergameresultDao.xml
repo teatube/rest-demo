@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.restdemo.models.dao.MultiplayergameresultDao">
+
+    <resultMap type="com.example.restdemo.models.entity.Multiplayergameresult" id="MultiplayergameresultMap">
+        <result property="idmultiplayergameresult" column="idmultiplayergameresult" jdbcType="INTEGER"/>
+        <result property="iduser" column="iduser" jdbcType="VARCHAR"/>
+        <result property="teaid" column="teaid" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="INTEGER"/>
+        <result property="clearLines" column="clear_lines" jdbcType="INTEGER"/>
+        <result property="attack" column="attack" jdbcType="INTEGER"/>
+        <result property="send" column="send" jdbcType="INTEGER"/>
+        <result property="offset" column="offset" jdbcType="INTEGER"/>
+        <result property="receive" column="receive" jdbcType="INTEGER"/>
+        <result property="rise" column="rise" jdbcType="INTEGER"/>
+        <result property="dig" column="dig" jdbcType="INTEGER"/>
+        <result property="pieces" column="pieces" jdbcType="INTEGER"/>
+        <result property="maxCombo" column="max_combo" jdbcType="INTEGER"/>
+        <result property="pcCount" column="pc_count" jdbcType="INTEGER"/>
+        <result property="place" column="place" jdbcType="INTEGER"/>
+        <result property="numPlayers" column="num_players" jdbcType="INTEGER"/>
+        <result property="fumenCode" column="fumen_code" jdbcType="INTEGER"/>
+        <result property="ruleSet" column="rule_set" jdbcType="VARCHAR"/>
+        <result property="garbage" column="garbage" jdbcType="VARCHAR"/>
+        <result property="idmultiplayergame" column="idmultiplayergame" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MultiplayergameresultMap">
+        select idmultiplayergameresult,
+               iduser,
+               teaid, time, clear_lines, attack, send,
+        offset, receive, rise, dig, pieces, max_combo, pc_count, place, num_players, fumen_code, rule_set, garbage, idmultiplayergame
+        from multiplayergameresult
+        where idmultiplayergameresult = #{idmultiplayergameresult}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MultiplayergameresultMap">
+        select
+        idmultiplayergameresult, iduser, teaid, time, clear_lines, attack, send, offset, receive, rise, dig, pieces,
+        max_combo, pc_count, place, num_players, fumen_code, rule_set, garbage, idmultiplayergame
+        from multiplayergameresult
+        <where>
+            <if test="idmultiplayergameresult != null">
+                and idmultiplayergameresult = #{idmultiplayergameresult}
+            </if>
+            <if test="iduser != null and iduser != ''">
+                and iduser = #{iduser}
+            </if>
+            <if test="teaid != null and teaid != ''">
+                and teaid = #{teaid}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+            <if test="clearLines != null">
+                and clear_lines = #{clearLines}
+            </if>
+            <if test="attack != null">
+                and attack = #{attack}
+            </if>
+            <if test="send != null">
+                and send = #{send}
+            </if>
+            <if test="offset != null">
+                and offset = #{offset}
+            </if>
+            <if test="receive != null">
+                and receive = #{receive}
+            </if>
+            <if test="rise != null">
+                and rise = #{rise}
+            </if>
+            <if test="dig != null">
+                and dig = #{dig}
+            </if>
+            <if test="pieces != null">
+                and pieces = #{pieces}
+            </if>
+            <if test="maxCombo != null">
+                and max_combo = #{maxCombo}
+            </if>
+            <if test="pcCount != null">
+                and pc_count = #{pcCount}
+            </if>
+            <if test="place != null">
+                and place = #{place}
+            </if>
+            <if test="numPlayers != null">
+                and num_players = #{numPlayers}
+            </if>
+            <if test="fumenCode != null">
+                and fumen_code = #{fumenCode}
+            </if>
+            <if test="ruleSet != null and ruleSet != ''">
+                and rule_set = #{ruleSet}
+            </if>
+            <if test="garbage != null and garbage != ''">
+                and garbage = #{garbage}
+            </if>
+            <if test="idmultiplayergame != null">
+                and idmultiplayergame = #{idmultiplayergame}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from multiplayergameresult
+        <where>
+            <if test="idmultiplayergameresult != null">
+                and idmultiplayergameresult = #{idmultiplayergameresult}
+            </if>
+            <if test="iduser != null and iduser != ''">
+                and iduser = #{iduser}
+            </if>
+            <if test="teaid != null and teaid != ''">
+                and teaid = #{teaid}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+            <if test="clearLines != null">
+                and clear_lines = #{clearLines}
+            </if>
+            <if test="attack != null">
+                and attack = #{attack}
+            </if>
+            <if test="send != null">
+                and send = #{send}
+            </if>
+            <if test="offset != null">
+                and offset = #{offset}
+            </if>
+            <if test="receive != null">
+                and receive = #{receive}
+            </if>
+            <if test="rise != null">
+                and rise = #{rise}
+            </if>
+            <if test="dig != null">
+                and dig = #{dig}
+            </if>
+            <if test="pieces != null">
+                and pieces = #{pieces}
+            </if>
+            <if test="maxCombo != null">
+                and max_combo = #{maxCombo}
+            </if>
+            <if test="pcCount != null">
+                and pc_count = #{pcCount}
+            </if>
+            <if test="place != null">
+                and place = #{place}
+            </if>
+            <if test="numPlayers != null">
+                and num_players = #{numPlayers}
+            </if>
+            <if test="fumenCode != null">
+                and fumen_code = #{fumenCode}
+            </if>
+            <if test="ruleSet != null and ruleSet != ''">
+                and rule_set = #{ruleSet}
+            </if>
+            <if test="garbage != null and garbage != ''">
+                and garbage = #{garbage}
+            </if>
+            <if test="idmultiplayergame != null">
+                and idmultiplayergame = #{idmultiplayergame}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="idmultiplayergameresult" useGeneratedKeys="true">
+        insert into multiplayergameresult(iduser, teaid, time, clear_lines, attack, send, offset, receive, rise, dig,
+                                          pieces, max_combo, pc_count, place, num_players, fumen_code, rule_set,
+                                          garbage, idmultiplayergame)
+        values (#{iduser}, #{teaid}, #{time}, #{clearLines}, #{attack}, #{send}, #{offset}, #{receive}, #{rise}, #{dig},
+                #{pieces}, #{maxCombo}, #{pcCount}, #{place}, #{numPlayers}, #{fumenCode}, #{ruleSet}, #{garbage},
+                #{idmultiplayergame})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="idmultiplayergameresult" useGeneratedKeys="true">
+        insert into multiplayergameresult(iduser, teaid, time, clear_lines, attack, send, offset, receive, rise, dig,
+        pieces, max_combo, pc_count, place, num_players, fumen_code, rule_set, garbage, idmultiplayergame)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.iduser}, #{entity.teaid}, #{entity.time}, #{entity.clearLines}, #{entity.attack}, #{entity.send},
+            #{entity.offset}, #{entity.receive}, #{entity.rise}, #{entity.dig}, #{entity.pieces}, #{entity.maxCombo},
+            #{entity.pcCount}, #{entity.place}, #{entity.numPlayers}, #{entity.fumenCode}, #{entity.ruleSet},
+            #{entity.garbage}, #{entity.idmultiplayergame})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="idmultiplayergameresult" useGeneratedKeys="true">
+        insert into multiplayergameresult(iduser, teaid, time, clear_lines, attack, send, offset, receive, rise, dig,
+        pieces, max_combo, pc_count, place, num_players, fumen_code, rule_set, garbage, idmultiplayergame)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.iduser}, #{entity.teaid}, #{entity.time}, #{entity.clearLines}, #{entity.attack}, #{entity.send},
+            #{entity.offset}, #{entity.receive}, #{entity.rise}, #{entity.dig}, #{entity.pieces}, #{entity.maxCombo},
+            #{entity.pcCount}, #{entity.place}, #{entity.numPlayers}, #{entity.fumenCode}, #{entity.ruleSet},
+            #{entity.garbage}, #{entity.idmultiplayergame})
+        </foreach>
+        on duplicate key update
+        iduser = values(iduser),
+        teaid = values(teaid),
+        time = values(time),
+        clear_lines = values(clear_lines),
+        attack = values(attack),
+        send = values(send),
+        offset = values(offset),
+        receive = values(receive),
+        rise = values(rise),
+        dig = values(dig),
+        pieces = values(pieces),
+        max_combo = values(max_combo),
+        pc_count = values(pc_count),
+        place = values(place),
+        num_players = values(num_players),
+        fumen_code = values(fumen_code),
+        rule_set = values(rule_set),
+        garbage = values(garbage),
+        idmultiplayergame = values(idmultiplayergame)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update multiplayergameresult
+        <set>
+            <if test="iduser != null and iduser != ''">
+                iduser = #{iduser},
+            </if>
+            <if test="teaid != null and teaid != ''">
+                teaid = #{teaid},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="clearLines != null">
+                clear_lines = #{clearLines},
+            </if>
+            <if test="attack != null">
+                attack = #{attack},
+            </if>
+            <if test="send != null">
+                send = #{send},
+            </if>
+            <if test="offset != null">
+                offset = #{offset},
+            </if>
+            <if test="receive != null">
+                receive = #{receive},
+            </if>
+            <if test="rise != null">
+                rise = #{rise},
+            </if>
+            <if test="dig != null">
+                dig = #{dig},
+            </if>
+            <if test="pieces != null">
+                pieces = #{pieces},
+            </if>
+            <if test="maxCombo != null">
+                max_combo = #{maxCombo},
+            </if>
+            <if test="pcCount != null">
+                pc_count = #{pcCount},
+            </if>
+            <if test="place != null">
+                place = #{place},
+            </if>
+            <if test="numPlayers != null">
+                num_players = #{numPlayers},
+            </if>
+            <if test="fumenCode != null">
+                fumen_code = #{fumenCode},
+            </if>
+            <if test="ruleSet != null and ruleSet != ''">
+                rule_set = #{ruleSet},
+            </if>
+            <if test="garbage != null and garbage != ''">
+                garbage = #{garbage},
+            </if>
+            <if test="idmultiplayergame != null">
+                idmultiplayergame = #{idmultiplayergame},
+            </if>
+        </set>
+        where idmultiplayergameresult = #{idmultiplayergameresult}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from multiplayergameresult
+        where idmultiplayergameresult = #{idmultiplayergameresult}
+    </delete>
+
+</mapper>
+
