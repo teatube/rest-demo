@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.restdemo.models.dao.SingleplayergameMapper">
+
+    <resultMap type="com.example.restdemo.models.entity.Singleplayergame" id="SingleplayergameMap">
+        <result property="idsingleplayergame" column="idsingleplayergame" jdbcType="INTEGER"/>
+        <result property="datetime" column="datetime" jdbcType="TIMESTAMP"/>
+        <result property="iduser" column="iduser" jdbcType="VARCHAR"/>
+        <result property="teaid" column="teaid" jdbcType="VARCHAR"/>
+        <result property="mode" column="mode" jdbcType="INTEGER"/>
+        <result property="clear" column="clear" jdbcType="VARCHAR"/>
+        <result property="serverTime" column="server_time" jdbcType="NUMERIC"/>
+        <result property="clientTime" column="client_time" jdbcType="NUMERIC"/>
+        <result property="lastPieceTime" column="last_piece_time" jdbcType="NUMERIC"/>
+        <result property="clearLines" column="clear_lines" jdbcType="INTEGER"/>
+        <result property="pieces" column="pieces" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="fumenCode" column="fumen_code" jdbcType="VARCHAR"/>
+        <result property="cheat" column="cheat" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="replayUpload" column="replay_upload" jdbcType="VARCHAR"/>
+        <result property="uuid" column="uuid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SingleplayergameMap">
+        select idsingleplayergame,
+               datetime,
+               iduser,
+               teaid,
+               mode,
+               clear,
+               server_time,
+               client_time,
+               last_piece_time,
+               clear_lines,
+               pieces,
+               score,
+               fumen_code,
+               cheat,
+               start_time,
+               replay_upload,
+               uuid
+        from singleplayergame
+        where idsingleplayergame = #{idsingleplayergame}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SingleplayergameMap">
+        select
+        idsingleplayergame, datetime, iduser, teaid, mode, clear, server_time, client_time, last_piece_time,
+        clear_lines, pieces, score, fumen_code, cheat, start_time, replay_upload, uuid
+        from singleplayergame
+        <where>
+            <if test="idsingleplayergame != null">
+                and idsingleplayergame = #{idsingleplayergame}
+            </if>
+            <if test="datetime != null">
+                and datetime = #{datetime}
+            </if>
+            <if test="iduser != null and iduser != ''">
+                and iduser = #{iduser}
+            </if>
+            <if test="teaid != null and teaid != ''">
+                and teaid = #{teaid}
+            </if>
+            <if test="mode != null">
+                and mode = #{mode}
+            </if>
+            <if test="clear != null and clear != ''">
+                and clear = #{clear}
+            </if>
+            <if test="serverTime != null">
+                and server_time = #{serverTime}
+            </if>
+            <if test="clientTime != null">
+                and client_time = #{clientTime}
+            </if>
+            <if test="lastPieceTime != null">
+                and last_piece_time = #{lastPieceTime}
+            </if>
+            <if test="clearLines != null">
+                and clear_lines = #{clearLines}
+            </if>
+            <if test="pieces != null">
+                and pieces = #{pieces}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="fumenCode != null and fumenCode != ''">
+                and fumen_code = #{fumenCode}
+            </if>
+            <if test="cheat != null and cheat != ''">
+                and cheat = #{cheat}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="replayUpload != null and replayUpload != ''">
+                and replay_upload = #{replayUpload}
+            </if>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from singleplayergame
+        <where>
+            <if test="idsingleplayergame != null">
+                and idsingleplayergame = #{idsingleplayergame}
+            </if>
+            <if test="datetime != null">
+                and datetime = #{datetime}
+            </if>
+            <if test="iduser != null and iduser != ''">
+                and iduser = #{iduser}
+            </if>
+            <if test="teaid != null and teaid != ''">
+                and teaid = #{teaid}
+            </if>
+            <if test="mode != null">
+                and mode = #{mode}
+            </if>
+            <if test="clear != null and clear != ''">
+                and clear = #{clear}
+            </if>
+            <if test="serverTime != null">
+                and server_time = #{serverTime}
+            </if>
+            <if test="clientTime != null">
+                and client_time = #{clientTime}
+            </if>
+            <if test="lastPieceTime != null">
+                and last_piece_time = #{lastPieceTime}
+            </if>
+            <if test="clearLines != null">
+                and clear_lines = #{clearLines}
+            </if>
+            <if test="pieces != null">
+                and pieces = #{pieces}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="fumenCode != null and fumenCode != ''">
+                and fumen_code = #{fumenCode}
+            </if>
+            <if test="cheat != null and cheat != ''">
+                and cheat = #{cheat}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="replayUpload != null and replayUpload != ''">
+                and replay_upload = #{replayUpload}
+            </if>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="idsingleplayergame" useGeneratedKeys="true">
+        insert into singleplayergame(datetime, iduser, teaid, mode, clear, server_time, client_time, last_piece_time,
+                                     clear_lines, pieces, score, fumen_code, cheat, start_time, replay_upload, uuid)
+        values (#{datetime}, #{iduser}, #{teaid}, #{mode}, #{clear}, #{serverTime}, #{clientTime}, #{lastPieceTime},
+                #{clearLines}, #{pieces}, #{score}, #{fumenCode}, #{cheat}, #{startTime}, #{replayUpload}, #{uuid})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="idsingleplayergame" useGeneratedKeys="true">
+        insert into singleplayergame(datetime, iduser, teaid, mode, clear, server_time, client_time, last_piece_time,
+        clear_lines, pieces, score, fumen_code, cheat, start_time, replay_upload, uuid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.datetime}, #{entity.iduser}, #{entity.teaid}, #{entity.mode}, #{entity.clear},
+            #{entity.serverTime}, #{entity.clientTime}, #{entity.lastPieceTime}, #{entity.clearLines}, #{entity.pieces},
+            #{entity.score}, #{entity.fumenCode}, #{entity.cheat}, #{entity.startTime}, #{entity.replayUpload},
+            #{entity.uuid})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="idsingleplayergame" useGeneratedKeys="true">
+        insert into singleplayergame(datetime, iduser, teaid, mode, clear, server_time, client_time, last_piece_time,
+        clear_lines, pieces, score, fumen_code, cheat, start_time, replay_upload, uuid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.datetime}, #{entity.iduser}, #{entity.teaid}, #{entity.mode}, #{entity.clear},
+            #{entity.serverTime}, #{entity.clientTime}, #{entity.lastPieceTime}, #{entity.clearLines}, #{entity.pieces},
+            #{entity.score}, #{entity.fumenCode}, #{entity.cheat}, #{entity.startTime}, #{entity.replayUpload},
+            #{entity.uuid})
+        </foreach>
+        on duplicate key update
+        datetime = values(datetime),
+        iduser = values(iduser),
+        teaid = values(teaid),
+        mode = values(mode),
+        clear = values(clear),
+        server_time = values(server_time),
+        client_time = values(client_time),
+        last_piece_time = values(last_piece_time),
+        clear_lines = values(clear_lines),
+        pieces = values(pieces),
+        score = values(score),
+        fumen_code = values(fumen_code),
+        cheat = values(cheat),
+        start_time = values(start_time),
+        replay_upload = values(replay_upload),
+        uuid = values(uuid)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update singleplayergame
+        <set>
+            <if test="datetime != null">
+                datetime = #{datetime},
+            </if>
+            <if test="iduser != null and iduser != ''">
+                iduser = #{iduser},
+            </if>
+            <if test="teaid != null and teaid != ''">
+                teaid = #{teaid},
+            </if>
+            <if test="mode != null">
+                mode = #{mode},
+            </if>
+            <if test="clear != null and clear != ''">
+                clear = #{clear},
+            </if>
+            <if test="serverTime != null">
+                server_time = #{serverTime},
+            </if>
+            <if test="clientTime != null">
+                client_time = #{clientTime},
+            </if>
+            <if test="lastPieceTime != null">
+                last_piece_time = #{lastPieceTime},
+            </if>
+            <if test="clearLines != null">
+                clear_lines = #{clearLines},
+            </if>
+            <if test="pieces != null">
+                pieces = #{pieces},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="fumenCode != null and fumenCode != ''">
+                fumen_code = #{fumenCode},
+            </if>
+            <if test="cheat != null and cheat != ''">
+                cheat = #{cheat},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="replayUpload != null and replayUpload != ''">
+                replay_upload = #{replayUpload},
+            </if>
+            <if test="uuid != null and uuid != ''">
+                uuid = #{uuid},
+            </if>
+        </set>
+        where idsingleplayergame = #{idsingleplayergame}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from singleplayergame
+        where idsingleplayergame = #{idsingleplayergame}
+    </delete>
+
+</mapper>
+

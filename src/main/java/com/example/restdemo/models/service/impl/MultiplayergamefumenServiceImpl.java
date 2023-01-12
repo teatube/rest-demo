@@ -1,7 +1,7 @@
 package com.example.restdemo.models.service.impl;
 
 import com.example.restdemo.models.entity.Multiplayergamefumen;
-import com.example.restdemo.models.dao.MultiplayergamefumenDao;
+import com.example.restdemo.models.dao.MultiplayergamefumenMapper;
 import com.example.restdemo.models.service.MultiplayergamefumenService;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -14,12 +14,12 @@ import javax.annotation.Resource;
  * (Multiplayergamefumen)表服务实现类
  *
  * @author szl
- * @since 2023-01-11 17:16:03
+ * @since 2023-01-12 14:26:11
  */
 @Service("multiplayergamefumenService")
 public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenService {
     @Resource
-    private MultiplayergamefumenDao multiplayergamefumenDao;
+    private MultiplayergamefumenMapper multiplayergamefumenMapper;
 
     /**
      * 通过ID查询单条数据
@@ -29,7 +29,7 @@ public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenServ
      */
     @Override
     public Multiplayergamefumen queryById(Long idmultiplayergameresult) {
-        return this.multiplayergamefumenDao.queryById(idmultiplayergameresult);
+        return this.multiplayergamefumenMapper.queryById(idmultiplayergameresult);
     }
 
     /**
@@ -41,8 +41,8 @@ public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenServ
      */
     @Override
     public Page<Multiplayergamefumen> queryByPage(Multiplayergamefumen multiplayergamefumen, PageRequest pageRequest) {
-        long total = this.multiplayergamefumenDao.count(multiplayergamefumen);
-        return new PageImpl<>(this.multiplayergamefumenDao.queryAllByLimit(multiplayergamefumen, pageRequest), pageRequest, total);
+        long total = this.multiplayergamefumenMapper.count(multiplayergamefumen);
+        return new PageImpl<>(this.multiplayergamefumenMapper.queryAllByLimit(multiplayergamefumen, pageRequest), pageRequest, total);
     }
 
     /**
@@ -53,7 +53,7 @@ public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenServ
      */
     @Override
     public Multiplayergamefumen insert(Multiplayergamefumen multiplayergamefumen) {
-        this.multiplayergamefumenDao.insert(multiplayergamefumen);
+        this.multiplayergamefumenMapper.insert(multiplayergamefumen);
         return multiplayergamefumen;
     }
 
@@ -65,7 +65,7 @@ public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenServ
      */
     @Override
     public Multiplayergamefumen update(Multiplayergamefumen multiplayergamefumen) {
-        this.multiplayergamefumenDao.update(multiplayergamefumen);
+        this.multiplayergamefumenMapper.update(multiplayergamefumen);
         return this.queryById(multiplayergamefumen.getIdmultiplayergameresult());
     }
 
@@ -77,6 +77,6 @@ public class MultiplayergamefumenServiceImpl implements MultiplayergamefumenServ
      */
     @Override
     public boolean deleteById(Long idmultiplayergameresult) {
-        return this.multiplayergamefumenDao.deleteById(idmultiplayergameresult) > 0;
+        return this.multiplayergamefumenMapper.deleteById(idmultiplayergameresult) > 0;
     }
 }

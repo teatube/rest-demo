@@ -1,21 +1,21 @@
 package com.example.restdemo.models.dao;
 
 import com.example.restdemo.models.entity.Multiplayergame;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * (Multiplayergame)表数据库访问层
  *
  * @author szl
- * @since 2023-01-11 17:16:03
+ * @since 2023-01-12 14:26:11
  */
 @Mapper
-public interface MultiplayergameDao {
+public interface MultiplayergameMapper {
 
     /**
      * 通过ID查询单条数据
@@ -23,8 +23,7 @@ public interface MultiplayergameDao {
      * @param idmultiplayergame 主键
      * @return 实例对象
      */
-
-    Multiplayergame queryById(Long idmultiplayergame);
+    Multiplayergame queryById(@Param(value = "idmultiplayergame") Long idmultiplayergame);
 
     /**
      * 查询指定行数据

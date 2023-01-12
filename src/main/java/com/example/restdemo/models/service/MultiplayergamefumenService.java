@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
  * (Multiplayergamefumen)表服务接口
  *
  * @author szl
- * @since 2023-01-11 17:16:03
+ * @since 2023-01-12 14:26:11
  */
 public interface MultiplayergamefumenService {
 

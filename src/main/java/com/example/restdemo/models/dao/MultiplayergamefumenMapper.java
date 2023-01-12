@@ -1,22 +1,21 @@
 package com.example.restdemo.models.dao;
 
 import com.example.restdemo.models.entity.Multiplayergamefumen;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * (Multiplayergamefumen)表数据库访问层
  *
  * @author szl
- * @since 2023-01-11 17:16:03
+ * @since 2023-01-12 14:26:11
  */
 @Mapper
-@Component
-public interface MultiplayergamefumenDao {
+public interface MultiplayergamefumenMapper {
 
     /**
      * 通过ID查询单条数据
@@ -24,7 +23,7 @@ public interface MultiplayergamefumenDao {
      * @param idmultiplayergameresult 主键
      * @return 实例对象
      */
-    Multiplayergamefumen queryById(Long idmultiplayergameresult);
+    Multiplayergamefumen queryById(@Param(value = "idmultiplayergameresult") Long idmultiplayergameresult);
 
     /**
      * 查询指定行数据

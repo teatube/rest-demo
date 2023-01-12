@@ -1,22 +1,21 @@
 package com.example.restdemo.models.dao;
 
 import com.example.restdemo.models.entity.Singleplayergame;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * (Singleplayergame)表数据库访问层
  *
  * @author szl
- * @since 2023-01-11 17:16:04
+ * @since 2023-01-12 14:26:13
  */
 @Mapper
-@Component
-public interface SingleplayergameDao {
+public interface SingleplayergameMapper {
 
     /**
      * 通过ID查询单条数据
@@ -24,7 +23,7 @@ public interface SingleplayergameDao {
      * @param idsingleplayergame 主键
      * @return 实例对象
      */
-    Singleplayergame queryById(Long idsingleplayergame);
+    Singleplayergame queryById(@Param(value = "idsingleplayergame") Long idsingleplayergame);
 
     /**
      * 查询指定行数据

@@ -1,7 +1,7 @@
 package com.example.restdemo.models.service.impl;
 
 import com.example.restdemo.models.entity.Singleplayergame;
-import com.example.restdemo.models.dao.SingleplayergameDao;
+import com.example.restdemo.models.dao.SingleplayergameMapper;
 import com.example.restdemo.models.service.SingleplayergameService;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -14,12 +14,12 @@ import javax.annotation.Resource;
  * (Singleplayergame)表服务实现类
  *
  * @author szl
- * @since 2023-01-11 17:16:05
+ * @since 2023-01-12 14:26:13
  */
 @Service("singleplayergameService")
 public class SingleplayergameServiceImpl implements SingleplayergameService {
     @Resource
-    private SingleplayergameDao singleplayergameDao;
+    private SingleplayergameMapper singleplayergameMapper;
 
     /**
      * 通过ID查询单条数据
@@ -29,7 +29,7 @@ public class SingleplayergameServiceImpl implements SingleplayergameService {
      */
     @Override
     public Singleplayergame queryById(Long idsingleplayergame) {
-        return this.singleplayergameDao.queryById(idsingleplayergame);
+        return this.singleplayergameMapper.queryById(idsingleplayergame);
     }
 
     /**
@@ -41,8 +41,8 @@ public class SingleplayergameServiceImpl implements SingleplayergameService {
      */
     @Override
     public Page<Singleplayergame> queryByPage(Singleplayergame singleplayergame, PageRequest pageRequest) {
-        long total = this.singleplayergameDao.count(singleplayergame);
-        return new PageImpl<>(this.singleplayergameDao.queryAllByLimit(singleplayergame, pageRequest), pageRequest, total);
+        long total = this.singleplayergameMapper.count(singleplayergame);
+        return new PageImpl<>(this.singleplayergameMapper.queryAllByLimit(singleplayergame, pageRequest), pageRequest, total);
     }
 
     /**
@@ -53,7 +53,7 @@ public class SingleplayergameServiceImpl implements SingleplayergameService {
      */
     @Override
     public Singleplayergame insert(Singleplayergame singleplayergame) {
-        this.singleplayergameDao.insert(singleplayergame);
+        this.singleplayergameMapper.insert(singleplayergame);
         return singleplayergame;
     }
 
@@ -65,7 +65,7 @@ public class SingleplayergameServiceImpl implements SingleplayergameService {
      */
     @Override
     public Singleplayergame update(Singleplayergame singleplayergame) {
-        this.singleplayergameDao.update(singleplayergame);
+        this.singleplayergameMapper.update(singleplayergame);
         return this.queryById(singleplayergame.getIdsingleplayergame());
     }
 
@@ -77,6 +77,6 @@ public class SingleplayergameServiceImpl implements SingleplayergameService {
      */
     @Override
     public boolean deleteById(Long idsingleplayergame) {
-        return this.singleplayergameDao.deleteById(idsingleplayergame) > 0;
+        return this.singleplayergameMapper.deleteById(idsingleplayergame) > 0;
     }
 }

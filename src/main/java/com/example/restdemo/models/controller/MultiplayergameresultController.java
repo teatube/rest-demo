@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * (Multiplayergameresult)表控制层
  *
  * @author szl
- * @since 2023-01-11 17:16:04
+ * @since 2023-01-12 14:26:11
  */
 @RestController
 @RequestMapping("multiplayergameresult")

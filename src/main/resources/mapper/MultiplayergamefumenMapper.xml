@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.restdemo.models.dao.MultiplayergamefumenDao">
+<mapper namespace="com.example.restdemo.models.dao.MultiplayergamefumenMapper">
 
     <resultMap type="com.example.restdemo.models.entity.Multiplayergamefumen" id="MultiplayergamefumenMap">
         <result property="idmultiplayergameresult" column="idmultiplayergameresult" jdbcType="INTEGER"/>

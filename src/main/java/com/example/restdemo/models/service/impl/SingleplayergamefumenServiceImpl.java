@@ -1,7 +1,7 @@
 package com.example.restdemo.models.service.impl;
 
 import com.example.restdemo.models.entity.Singleplayergamefumen;
-import com.example.restdemo.models.dao.SingleplayergamefumenDao;
+import com.example.restdemo.models.dao.SingleplayergamefumenMapper;
 import com.example.restdemo.models.service.SingleplayergamefumenService;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -14,12 +14,12 @@ import javax.annotation.Resource;
  * (Singleplayergamefumen)表服务实现类
  *
  * @author szl
- * @since 2023-01-11 17:16:05
+ * @since 2023-01-12 14:26:13
  */
 @Service("singleplayergamefumenService")
 public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenService {
     @Resource
-    private SingleplayergamefumenDao singleplayergamefumenDao;
+    private SingleplayergamefumenMapper singleplayergamefumenMapper;
 
     /**
      * 通过ID查询单条数据
@@ -29,7 +29,7 @@ public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenSe
      */
     @Override
     public Singleplayergamefumen queryById(Long idsingleplayergame) {
-        return this.singleplayergamefumenDao.queryById(idsingleplayergame);
+        return this.singleplayergamefumenMapper.queryById(idsingleplayergame);
     }
 
     /**
@@ -41,8 +41,8 @@ public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenSe
      */
     @Override
     public Page<Singleplayergamefumen> queryByPage(Singleplayergamefumen singleplayergamefumen, PageRequest pageRequest) {
-        long total = this.singleplayergamefumenDao.count(singleplayergamefumen);
-        return new PageImpl<>(this.singleplayergamefumenDao.queryAllByLimit(singleplayergamefumen, pageRequest), pageRequest, total);
+        long total = this.singleplayergamefumenMapper.count(singleplayergamefumen);
+        return new PageImpl<>(this.singleplayergamefumenMapper.queryAllByLimit(singleplayergamefumen, pageRequest), pageRequest, total);
     }
 
     /**
@@ -53,7 +53,7 @@ public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenSe
      */
     @Override
     public Singleplayergamefumen insert(Singleplayergamefumen singleplayergamefumen) {
-        this.singleplayergamefumenDao.insert(singleplayergamefumen);
+        this.singleplayergamefumenMapper.insert(singleplayergamefumen);
         return singleplayergamefumen;
     }
 
@@ -65,7 +65,7 @@ public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenSe
      */
     @Override
     public Singleplayergamefumen update(Singleplayergamefumen singleplayergamefumen) {
-        this.singleplayergamefumenDao.update(singleplayergamefumen);
+        this.singleplayergamefumenMapper.update(singleplayergamefumen);
         return this.queryById(singleplayergamefumen.getIdsingleplayergame());
     }
 
@@ -77,6 +77,6 @@ public class SingleplayergamefumenServiceImpl implements SingleplayergamefumenSe
      */
     @Override
     public boolean deleteById(Long idsingleplayergame) {
-        return this.singleplayergamefumenDao.deleteById(idsingleplayergame) > 0;
+        return this.singleplayergamefumenMapper.deleteById(idsingleplayergame) > 0;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.restdemo.models.service.impl;
 
 import com.example.restdemo.models.entity.Multiplayergame;
-import com.example.restdemo.models.dao.MultiplayergameDao;
+import com.example.restdemo.models.dao.MultiplayergameMapper;
 import com.example.restdemo.models.service.MultiplayergameService;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -14,12 +14,12 @@ import javax.annotation.Resource;
  * (Multiplayergame)表服务实现类
  *
  * @author szl
- * @since 2023-01-11 17:16:03
+ * @since 2023-01-12 14:26:10
  */
 @Service("multiplayergameService")
 public class MultiplayergameServiceImpl implements MultiplayergameService {
     @Resource
-    private MultiplayergameDao multiplayergameDao;
+    private MultiplayergameMapper multiplayergameMapper;
 
     /**
      * 通过ID查询单条数据
@@ -29,7 +29,7 @@ public class MultiplayergameServiceImpl implements MultiplayergameService {
      */
     @Override
     public Multiplayergame queryById(Long idmultiplayergame) {
-        return this.multiplayergameDao.queryById(idmultiplayergame);
+        return this.multiplayergameMapper.queryById(idmultiplayergame);
     }
 
     /**
@@ -41,8 +41,8 @@ public class MultiplayergameServiceImpl implements MultiplayergameService {
      */
     @Override
     public Page<Multiplayergame> queryByPage(Multiplayergame multiplayergame, PageRequest pageRequest) {
-        long total = this.multiplayergameDao.count(multiplayergame);
-        return new PageImpl<>(this.multiplayergameDao.queryAllByLimit(multiplayergame, pageRequest), pageRequest, total);
+        long total = this.multiplayergameMapper.count(multiplayergame);
+        return new PageImpl<>(this.multiplayergameMapper.queryAllByLimit(multiplayergame, pageRequest), pageRequest, total);
     }
 
     /**
@@ -53,7 +53,7 @@ public class MultiplayergameServiceImpl implements MultiplayergameService {
      */
     @Override
     public Multiplayergame insert(Multiplayergame multiplayergame) {
-        this.multiplayergameDao.insert(multiplayergame);
+        this.multiplayergameMapper.insert(multiplayergame);
         return multiplayergame;
     }
 
@@ -65,7 +65,7 @@ public class MultiplayergameServiceImpl implements MultiplayergameService {
      */
     @Override
     public Multiplayergame update(Multiplayergame multiplayergame) {
-        this.multiplayergameDao.update(multiplayergame);
+        this.multiplayergameMapper.update(multiplayergame);
         return this.queryById(multiplayergame.getIdmultiplayergame());
     }
 
@@ -77,6 +77,6 @@ public class MultiplayergameServiceImpl implements MultiplayergameService {
      */
     @Override
     public boolean deleteById(Long idmultiplayergame) {
-        return this.multiplayergameDao.deleteById(idmultiplayergame) > 0;
+        return this.multiplayergameMapper.deleteById(idmultiplayergame) > 0;
     }
 }
